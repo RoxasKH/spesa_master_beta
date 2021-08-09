@@ -19,10 +19,17 @@ public class SpesaMaster {
 		int answer = t.nextInt();
 		switch (answer) {
 			case 1:
-				System.out.println ("Inserisci il nome dell'utente:");
-				name = t.next();
-				System.out.println ("Inserisci la password dell'utente:");
-				pswd = t.next();
+				do {
+					System.out.println ("Inserisci il nome dell'utente:");
+					name = t.next();
+					System.out.println ("Inserisci la password dell'utente:");
+					pswd = t.next();
+					if(name.length() < 3 || pswd.length() < 3) {
+						System.out.println ("Per favore inserire nome e password con almeno tre lettere!");
+					}
+				} 
+				while(name.length() < 3 || pswd.length() < 3);
+
 				sessionID = SpesaMethods.createUser(name, pswd);
 				break;
 			case 2:
