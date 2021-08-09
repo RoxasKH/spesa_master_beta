@@ -13,16 +13,44 @@ public class SpesaMethods {
 
 // Crea uno user.
 	public static String createUser (String name, String pswd) {
+
 		String id = "";
 		String user = "";
-		if (name.length() < 3 || pswd.length() < 3) {
-			System.out.println ("Per favore inserire nome e password con almeno tre lettere!");
+
+		id = name.substring(0, 3) + pswd.substring(0, 3) + (int)Math.random()*1000000;
+		
+
+		do {
+			String id1 = findId(id);
 		}
-		else {
-			id = name.substring(0, 3) + pswd.substring(0, 3);
-			user = name + "|" + pswd + "|" + id;
-			writeUser(user);
+		while(id != id1);
+
+		id = id1;
+
+		user = id + "|" name + "|" + pswd;
+		writeUser(user);
+
+		return id;
+	}
+
+	public static String findId(String id) {
+
+		try {
+			inputstream = new Scanner (new File ("users.txt"));
 		}
+		catch (FileNotFoundException e) {
+			System.out.println ("Errore nell'apertura del file...");
+			System.exit(0);
+		}
+
+		while (inputstream.hasNextLine()) {
+			if (id.equals(inputstream.nextLine())) {
+				id = user.substring(0, 7) + (int)Math.random()*1000000;
+			}
+		}
+
+		inputstream.close();
+
 		return id;
 	}
 
@@ -31,7 +59,7 @@ public class SpesaMethods {
 		PrintWriter outstream_user = null;
 
 		try {
-			outstream_user = new PrintWriter (new FileOutputStream ("C:/Users/Matteo/Desktop/spesa_master/spesa_master_beta/users.txt", true));
+			outstream_user = new PrintWriter (new FileOutputStream ("users.txt", true));
 		}
 		catch (FileNotFoundException e) {
 			System.out.println ("Errore nell'apertura del file...");
@@ -47,7 +75,7 @@ public class SpesaMethods {
 		PrintWriter outstream_value = null;
 
 		try {
-			outstream_value = new PrintWriter (new FileOutputStream ("C:/Users/Matteo/Desktop/spesa_master/spesa_master_beta/spesa.txt", true));
+			outstream_value = new PrintWriter (new FileOutputStream ("spesa.txt", true));
 		}
 		catch (FileNotFoundException e) {
 			System.out.println ("Errore nell'apertura del file...");
@@ -77,7 +105,7 @@ public class SpesaMethods {
 		boolean found = false;
 
 		try {
-			inputstream = new Scanner (new File ("C:/Users/Matteo/Desktop/spesa_master/users.txt"));
+			inputstream = new Scanner (new File ("users.txt"));
 		}
 		catch (FileNotFoundException e) {
 			System.out.println ("Errore nell'apertura del file...");
