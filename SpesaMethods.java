@@ -20,7 +20,7 @@ public class SpesaMethods {
 		id = name.substring(0, 3) + pswd.substring(0, 3) + (int)(Math.random()*1000000);
 
 		while (findId(id)) {
-			id = id.substring(0, 7) + (int)Math.random()*1000000;
+			id = id.substring(0, 6) + (int)Math.random()*1000000;
 		}
 
 		user = id + "|" + name + "|" + pswd;
@@ -29,7 +29,7 @@ public class SpesaMethods {
 		return id;
 	}
 
-	public static boolean findId(String id) {
+	public static boolean findId(String id) { // Private
 
 		Scanner inputstream = null;
 		boolean found = false;
@@ -52,7 +52,7 @@ public class SpesaMethods {
 	}
 
 // Scrive uno user nel file users.
-	public static void writeUser (String user) {
+	public static void writeUser (String user) { // Private
 		PrintWriter outstream_user = null;
 
 		try {
@@ -68,7 +68,7 @@ public class SpesaMethods {
 	}
 
 // Scrive un valore nel file spesa.
-	public static void writeValue (String spesa) {
+	public static void writeValue (String spesa) { // Private
 		PrintWriter outstream_value = null;
 
 		try {
@@ -97,7 +97,7 @@ public class SpesaMethods {
 	}
 
 // Verifica la presenza di uno user nel file.
-	public static boolean findUser (String user) {
+	public static boolean findUser (String user) { // Private
 		Scanner inputstream = null;
 		boolean found = false;
 
@@ -132,13 +132,11 @@ public class SpesaMethods {
 // Ordina i dati in base alla data.
 	public static void sort () {
 		// TODO
-		
 	}
 
-// Ripulisce la data 
-	public static String cleanDate (String date) {
-		// TODO
-		return date;
+// Ripulisce la data da aaaa/mm/gg --> aaaammgg
+	public static String cleanDate (String date) { // Private
+		return (date.substring(0, 4) + date.substring(5, 7) + date.substring(8, 10));
 	}
 
 // Crea un file di testo dato il nome
