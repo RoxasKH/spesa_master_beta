@@ -20,7 +20,7 @@ public class SpesaMethods {
 		id = name.substring(0, 3) + pswd.substring(0, 3) + (int)(Math.random()*1000000);
 
 		while (findId(id)) {
-			id = id.substring(0, 6) + (int)Math.random()*1000000;
+			id = id.substring(0, 6) + (int)(Math.random()*1000000);
 		}
 
 		user = id + "|" + name + "|" + pswd;
