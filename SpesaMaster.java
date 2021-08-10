@@ -3,6 +3,11 @@ import java.util.Scanner;
 public class SpesaMaster {
 	public static void main (String[] args) {
 
+		// Genera i file in cui salvare i dati
+		SpesaMethods.createTextFile("users.txt");
+		SpesaMethods.createTextFile("spesa.txt");
+		SpesaMethods.createTextFile("total.txt");
+
 		Scanner t = new Scanner(System.in);
 		System.out.println ("Benvenuti in Spesa Master - Lorena Edition!");
 

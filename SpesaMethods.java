@@ -18,22 +18,21 @@ public class SpesaMethods {
 		String user = "";
 
 		id = name.substring(0, 3) + pswd.substring(0, 3) + (int)Math.random()*1000000;
-		
 
-		do {
-			String id1 = findId(id);
+		while (findId(id)) {
+			id = id.substring(0, 7) + (int)Math.random()*1000000;
 		}
-		while(id != id1);
 
-		id = id1;
-
-		user = id + "|" name + "|" + pswd;
+		user = id + "|" + name + "|" + pswd;
 		writeUser(user);
 
 		return id;
 	}
 
-	public static String findId(String id) {
+	public static boolean findId(String id) {
+
+		Scanner inputstream = null;
+		boolean found = false;
 
 		try {
 			inputstream = new Scanner (new File ("users.txt"));
@@ -44,14 +43,12 @@ public class SpesaMethods {
 		}
 
 		while (inputstream.hasNextLine()) {
-			if (id.equals(inputstream.nextLine())) {
-				id = user.substring(0, 7) + (int)Math.random()*1000000;
+			if (id.equals(inputstream.nextLine().substring(0, 13))) {
+				found = true;
 			}
 		}
-
 		inputstream.close();
-
-		return id;
+		return found;
 	}
 
 // Scrive uno user nel file users.
@@ -138,7 +135,29 @@ public class SpesaMethods {
 		
 	}
 
+// Ripulisce la data 
 	public static String cleanDate (String date) {
-		return (date.substring(0, 3) + date.substring(5, 6) + date.substring(8, 9));
+		// TODO
+		return date;
+	}
+
+// Crea un file di testo dato il nome
+	public static void createTextFile (String name) {
+
+		File table = new File (name);
+
+		if (!table.exists()) {
+
+			PrintWriter outstream = null;
+
+			try {
+				outstream = new PrintWriter (name);
+			}
+			catch (FileNotFoundException e) {
+				System.out.println ("Errore nell'apertura del file...");
+				System.exit(0);
+			}
+			outstream.close();
+		}
 	}
 }
