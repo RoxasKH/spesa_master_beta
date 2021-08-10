@@ -17,7 +17,7 @@ public class SpesaMethods {
 		String id = "";
 		String user = "";
 
-		id = name.substring(0, 3) + pswd.substring(0, 3) + (int)Math.random()*1000000;
+		id = name.substring(0, 3) + pswd.substring(0, 3) + (int)(Math.random()*1000000);
 
 		while (findId(id)) {
 			id = id.substring(0, 7) + (int)Math.random()*1000000;
