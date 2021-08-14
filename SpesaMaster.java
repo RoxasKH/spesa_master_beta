@@ -50,7 +50,7 @@ public class SpesaMaster {
 		boolean close = false;
 		while (!close) {
 			System.out.println ("Ora cosa desidera fare?\n");
-			System.out.println ("1 - Inserire un dato\n2 - Effettuare un calcolo\n0 - Chiudere il programma");
+			System.out.println ("1 - Inserire un dato\n2 - Effettuare un calcolo\n3 - Stampare i dati\n0 - Chiudere il programma");
 			int user_answer = t.nextInt();
 			switch (user_answer) {
 				case 0:
@@ -70,6 +70,9 @@ public class SpesaMaster {
 					System.out.println ("Inserisci la data di fine:");
 					date_end = t.next();
 					SpesaMethods.calculate(date_beg, date_end);
+					break;
+				case 3:
+					// TODO
 					break;
 			}
 		}
