@@ -11,6 +11,8 @@ import java.io.EOFException; // End Of File.
 
 public class SpesaMethods {
 
+/*users METHODS*/
+
 // Crea uno user.
 	public static String createUser (String name, String pswd) {
 
@@ -29,6 +31,7 @@ public class SpesaMethods {
 		return id;
 	}
 
+// Verifica la presenza di un determinato ID nel file.
 	public static boolean findId(String id) { // Private
 
 		Scanner inputstream = null;
@@ -67,22 +70,6 @@ public class SpesaMethods {
 		outstream_user.close();
 	}
 
-// Scrive un valore nel file spesa.
-	public static void writeValue (String spesa) { // Private
-		PrintWriter outstream_value = null;
-
-		try {
-			outstream_value = new PrintWriter (new FileOutputStream ("spesa.txt", true));
-		}
-		catch (FileNotFoundException e) {
-			System.out.println ("Errore nell'apertura del file...");
-			System.exit(0);
-		}
-
-		outstream_value.println (spesa);
-		outstream_value.close();
-	}
-
 // Effettua il login di un utente.
 	public static String login (String name, String pswd) {
 		String id = name.substring(0, 3) + pswd.substring(0, 3);
@@ -118,6 +105,27 @@ public class SpesaMethods {
 		return found;
 	}
 
+/*END OF users METHODS*/
+
+
+/*spesa METHODS*/
+
+// Scrive un valore nel file spesa.
+	public static void writeValue (String spesa) { // Private
+		PrintWriter outstream_value = null;
+
+		try {
+			outstream_value = new PrintWriter (new FileOutputStream ("spesa.txt", true));
+		}
+		catch (FileNotFoundException e) {
+			System.out.println ("Errore nell'apertura del file...");
+			System.exit(0);
+		}
+
+		outstream_value.println (spesa);
+		outstream_value.close();
+	}
+
 // Inserisci un valore nel file spesa
 	public static void insert (String date, String value, String sessionID) {
 		String spesa = date + "|" + value + "|" + sessionID;
@@ -135,9 +143,17 @@ public class SpesaMethods {
 	}
 
 // Ripulisce la data da aaaa/mm/gg --> aaaammgg
-	public static String cleanDate (String date) { // Private
-		return (date.substring(0, 4) + date.substring(5, 7) + date.substring(8, 10));
+	public static int cleanDate (String date) { // Private
+		return parseInt( (date.substring(0, 4) + date.substring(5, 7) + date.substring(8, 10)) );
 	}
+
+// Ripulisce il valore
+	public static double cleanValue (String date) { // Private
+		return parseDouble(this.value);
+	}
+
+/*END OF spesa METHODS*/
+
 
 // Crea un file di testo dato il nome
 	public static void createTextFile (String name) {

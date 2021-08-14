@@ -24,6 +24,10 @@ public class OList {
 		public void setValue (double value) {this.value = value;}
 		public void setId (String id) {this.id = id;}
 		public void setNext (Node next) {this.next = next;}
+		// To String
+		public String toString () {
+			return (this.getDate() + "|" + this.getValue() + "|" + this.getId());
+		}
 	}
 
 	private Node head;
@@ -51,5 +55,14 @@ public class OList {
 // Metodo che ordina la stringa.
 	public void sort () {
 		// TODO
+	}
+
+// Metodo che stampa la lista a schermo.
+	public void printList () {
+		Node curr = this.head;
+		while (curr.getNext() != null) {
+			System.out.println (curr.toString());
+			curr = curr.getNext();
+		}
 	}
 }
